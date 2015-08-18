@@ -2,9 +2,7 @@
 
 `stash` is an open-source data format and associated toolchain for managing structured notebooks, featuring an extensible mixed-mode content model, dynamic documents and inter-document linking. Think of it as Evernote for power users.
 
-As it stands this document is a brain dump of what 
-
-Very little code is currently written, mostly existing as a collection of ad-hoc bash, Ruby and Javascript scattered about my local machine.
+As it stands this document is a semi-coherent brain dump. Very little code is currently written, mostly existing as a collection of ad-hoc bash, Ruby and Javascript scattered about my local machine. Discussions and new ideas are most welcome!
 
 ## High Level Overview
 
@@ -97,9 +95,10 @@ search: (tag foobar)
 
 The `stash` type system will be extensible with plugins. Possible types:
 
-  * `tree`: display a customisable tree summary of all descendant pages
+  * `graph`: create a graph of page relationships via graphviz
   * `sketch`: Processing-like sketch-coding
-
+  * `tree`: display a customisable tree summary of all descendant pages
+  
 ### `meta.info`
 
 A document's optional `meta.info` file contains strucuted metadata describing the document. Data inside `meta.info` forms the basis of the structured data that can be queried by the `stash` client library.
@@ -124,6 +123,8 @@ Files/folders with a leading underscore have special meaning within a `stash` no
 
 Mounts a notebook at a given URL.
 
+An indexing service will be run in the background to allow performant querying.
+
 ### Automatic Type Conversion
 
 The server should use the `Accept` header or the URL file extension to serve content in the most appropriate manner, performing auto-conversion as necessary. Examples:
@@ -131,9 +132,34 @@ The server should use the `Accept` header or the URL file extension to serve con
   * `foo.jpg` is requested as `foo.html`: display photo in HTML with metadata alongside.
   * `bar.csv` is requested as `bar.html`: display tabular data. Provide UI for querying data. Query-string can also be used to query data.
   * `bar.csv` is requested as `bar.json`: convert CSV to JSON.
+  * `baz.tex` is requested as `baz.pdf`: magic happens and a PDF appears. Unless you're on a Mac, in which case a chunk of the internet is downloaded and something breaks half-way through
 
 Accessing a file with its original file extension will always display the original file, unaltered.
 
 ## 5. Web-based Notebook Editor
 
 ## 6. Synchronisation Tools
+
+This is up for discussion! There are lots of trade-offs in the various possible approaches so it would be good to get a conversation going.
+
+## Some Details
+
+### Linking
+
+Documents can be linked by:
+
+  * relative reference
+  * absolute reference
+  * ID
+  * UUID
+
+Within a `info` files, the syntax for these are:
+
+  * ./foo
+  * /baz/bar/foo
+  * #foo
+  * #58D5E212-165B-4CA0-909B-C86B9CEE0111
+
+IDs are notebook-unique and are used to assign friendly names to key pages.
+
+UUIDs are globally unique and are machine-generated for the purpose of preserving identity when publishing/syncing.
