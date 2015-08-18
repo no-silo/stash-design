@@ -93,6 +93,13 @@ search: (tag foobar)
 --- embed: notes.md
 ```
 
+#### Extensibility
+
+The `stash` type system will be extensible with plugins. Possible types:
+
+  * `tree`: display a customisable tree summary of all descendant pages
+  * `sketch`: Processing-like sketch-coding
+
 ### `meta.info`
 
 A document's optional `meta.info` file contains strucuted metadata describing the document. Data inside `meta.info` forms the basis of the structured data that can be queried by the `stash` client library.
