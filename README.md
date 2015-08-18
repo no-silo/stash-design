@@ -122,6 +122,18 @@ Files/folders with a leading underscore have special meaning within a `stash` no
 
 ## 4. Web-based Notebook Browser
 
+Mounts a notebook at a given URL.
+
+### Automatic Type Conversion
+
+The server should use the `Accept` header or the URL file extension to serve content in the most appropriate manner, performing auto-conversion as necessary. Examples:
+
+  * `foo.jpg` is requested as `foo.html`: display photo in HTML with metadata alongside.
+  * `bar.csv` is requested as `bar.html`: display tabular data. Provide UI for querying data. Query-string can also be used to query data.
+  * `bar.csv` is requested as `bar.json`: convert CSV to JSON.
+
+Accessing a file with its original file extension will always display the original file, unaltered.
+
 ## 5. Web-based Notebook Editor
 
 ## 6. Synchronisation Tools
