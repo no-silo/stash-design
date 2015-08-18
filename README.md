@@ -91,6 +91,7 @@ search: (tag foobar)
 
 --- embed: summary.pdf
 --- embed: notes.md
+```
 
 ### `meta.info`
 
