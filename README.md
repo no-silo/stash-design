@@ -112,6 +112,7 @@ Arbitrary metadata is supported, however the following top-level keys have parti
 
 Files/folders with a leading underscore have special meaning within a `stash` notebook. At present these are:
 
+  * `_aliases` (file): unique, only exists at the notebook root. Allows you to define `@`-prefixed path aliases for documents, making it possible to reference nested projects in DRY-way.
   * `_tags` (file): unique, only exists at the notebook root. The `_tags` file can be used to organise tags into a hierarchy (one tag per line, indentation implies descendancy). Any tags omitted from this file are assumed to be top-level tags.
   * `_template` (directory): a template document; any new document created at this level will be a copy of this template.
 
