@@ -2,6 +2,8 @@
 
 `stash` is an open-source data format and associated toolchain for managing structured notebooks, featuring an extensible mixed-mode content model, dynamic documents and inter-document linking. Think of it as Evernote for power users.
 
+All data is stored on your own machine in plain text. Notebooks can be synced using standard tools and checked into version control systems.
+
 As it stands this document is a semi-coherent brain dump. Very little code is currently written, mostly existing as a collection of ad-hoc bash, Ruby and Javascript scattered about my local machine. Discussions and new ideas are most welcome!
 
 ## High Level Overview
